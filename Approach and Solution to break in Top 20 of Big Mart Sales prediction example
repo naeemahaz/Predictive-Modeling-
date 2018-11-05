@@ -1,5 +1,12 @@
 https://www.analyticsvidhya.com/blog/2016/02/bigmart-sales-solution-top-20/
 
+3. Bigmart Sales Data Set
+shopping-cart-1269174_960_720Retail is another industry which extensively uses analytics to optimize business processes. Tasks like product placement, inventory management, customized offers, product bundling, etc. are being smartly handled using data science techniques. As the name suggests, this data comprises of transaction records of a sales store. This is a regression problem. The data has 8523 rows of 12 variables.
+
+Problem: Predict the sales of a store.
+
+Start: Get Data | Tutorial: Get Here
+
 
 Approach and Solution to break in Top 20 of Big Mart Sales prediction
 
