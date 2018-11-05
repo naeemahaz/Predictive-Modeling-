@@ -1,0 +1,738 @@
+https://www.analyticsvidhya.com/blog/2016/02/bigmart-sales-solution-top-20/
+
+
+Approach and Solution to break in Top 20 of Big Mart Sales prediction
+
+1) Hypothesis Generation – understanding the problem better by brainstorming possible factors that can impact the outcome
+2) Data Exploration – looking at categorical and continuous feature summaries and making inferences about the data.
+3) Data Cleaning – imputing missing values in the data and checking for outliers
+4) Feature Engineering – modifying existing variables and creating new ones for analysis
+5) Model Building – making predictive models on the data
+
+1. Hypothesis Generation
+This is a very pivotal step in the process of analyzing data. This involves understanding the problem and making some hypothesis about what could potentially have a good impact on the outcome. This is done BEFORE looking at the data, and we end up creating a laundry list of the different analysis which we can potentially perform if data is available. Read more about hypothesis generation here.
+
+2. Data Exploration  --- https://www.analyticsvidhya.com/blog/2016/01/guide-data-exploration/
+We’ll be performing some basic data exploration here and come up with some inferences about the data. 
+
+A Comprehensive Guide to Data Exploration
+SUNIL RAY, JANUARY 10, 2016
+
+ 
+Introduction
+There are no shortcuts for data exploration. If you are in a state of mind, that machine learning can sail you away from every data storm, trust me, it won’t. After some point of time, you’ll realize that you are struggling at improving model’s accuracy. In such situation, data exploration techniques will come to your rescue.
+
+I can confidently say this, because I’ve been through such situations, a lot.
+
+I have been a Business Analytics professional for close to three years now. In my initial days, one of my mentor suggested me to spend significant time on exploration and analyzing data. Following his advice has served me well.
+
+I’ve created this tutorial to help you understand the underlying techniques of data exploration. As always, I’ve tried my best to explain these concepts in the simplest manner. For better understanding, I’ve taken up few examples to demonstrate the complicated concepts.
+
+ 
+
+complete tutorial on data exploration in analytics
+
+ 
+
+Table of Contents
+Steps of Data Exploration and Preparation
+Missing Value Treatment
+Why missing value treatment is required ?
+Why data has missing values?
+Which are the methods to treat missing value ?
+Techniques of Outlier Detection and Treatment
+What is an outlier?
+What are the types of outliers ?
+What are the causes of outliers ?
+What is the impact of outliers on dataset ?
+How to detect outlier ?
+How to remove outlier ?
+The Art of Feature Engineering
+What is Feature Engineering ?
+What is the process of Feature Engineering ?
+What is Variable Transformation ?
+When should we use variable transformation ?
+What are the common methods of variable transformation ?
+What is feature variable creation and its benefits ?
+ 
+
+
+Let’s get started.
+ 
+
+1. Steps of Data Exploration and Preparation
+Remember the quality of your inputs decide the quality of your output. So, once you have got your business hypothesis ready, it makes sense to spend lot of time and efforts here. With my personal estimate, data exploration, cleaning and preparation can take up to 70% of your total project time.
+
+Below are the steps involved to understand, clean and prepare your data for building your predictive model:
+
+Variable Identification
+Univariate Analysis
+Bi-variate Analysis
+Missing values treatment
+Outlier treatment
+Variable transformation
+Variable creation
+Finally, we will need to iterate over steps 4 – 7 multiple times before we come up with our refined model.
+
+Let’s now study each stage in  detail:-
+
+ 
+
+Variable Identification
+First, identify Predictor (Input) and Target (output) variables. Next, identify the data type and category of the variables.
+
+Let’s understand this step more clearly by taking an example.
+
+Example:- Suppose, we want to predict, whether the students will play cricket or not (refer below data set). Here you need to identify predictor variables, target variable, data type of variables and category of variables.Business Analytics, Data ExplorationBelow, the variables have been defined in different category:
+
+Business Analytics, Data Exploration
+
+ 
+
+Univariate Analysis
+At this stage, we explore variables one by one. Method to perform uni-variate analysis will depend on whether the variable type is categorical or continuous. Let’s look at these methods and statistical measures for categorical and continuous variables individually:
+
+Continuous Variables:- In case of continuous variables, we need to understand the central tendency and spread of the variable. These are measured using various statistical metrics visualization methods as shown below:
+
+Data Exploration, Business AnalyticsNote: Univariate analysis is also used to highlight missing and outlier values. In the upcoming part of this series, we will look at methods to handle missing and outlier values. To know more about these methods, you can refer course descriptive statistics from Udacity.
+
+Categorical Variables:- For categorical variables, we’ll use frequency table to understand distribution of each category. We can also read as percentage of values under each category. It can be be measured using two metrics, Count and Count% against each category. Bar chart can be used as visualization.
+
+ 
+
+Bi-variate Analysis
+Bi-variate Analysis finds out the relationship between two variables. Here, we look for association and disassociation between variables at a pre-defined significance level. We can perform bi-variate analysis for any combination of categorical and continuous variables. The combination can be: Categorical & Categorical, Categorical & Continuous and Continuous & Continuous. Different methods are used to tackle these combinations during analysis process.
+
+Let’s understand the possible combinations in detail:
+
+Continuous & Continuous: While doing bi-variate analysis between two continuous variables, we should look at scatter plot. It is a nifty way to find out the relationship between two variables. The pattern of scatter plot indicates the relationship between variables. The relationship can be linear or non-linear.
+
+Data Exploration, Business AnalyticsScatter plot shows the relationship between two variable but does not indicates the strength of relationship amongst them. To find the strength of the relationship, we use Correlation. Correlation varies between -1 and +1.
+
+-1: perfect negative linear correlation
++1:perfect positive linear correlation and 
+0: No correlation
+Correlation can be derived using following formula:
+
+Correlation = Covariance(X,Y) / SQRT( Var(X)* Var(Y))
+
+Various tools have function or functionality to identify correlation between variables. In Excel, function CORREL() is used to return the correlation between two variables and SAS uses procedure PROC CORR to identify the correlation. These function returns Pearson Correlation value to identify the relationship between two variables:
+
+Correlation, Co-variance, Variance, Data Exploration, Business Analytics
+
+In above example, we have good positive relationship(0.65) between two variables X and Y.
+
+ 
+
+Categorical & Categorical: To find the relationship between two categorical variables, we can use following methods:
+
+Two-way table: We can start analyzing the relationship by creating a two-way table of count and count%. The rows represents the category of one variable and the columns represent the categories of the other variable. We show count or count% of observations available in each combination of row and column categories.
+Stacked Column Chart: This method is more of a visual form of Two-way table.
+Data Exploration, Business Analytics, Stacked Column Chart, Two-Way Table
+
+Chi-Square Test: This test is used to derive the statistical significance of relationship between the variables. Also, it tests whether the evidence in the sample is strong enough to generalize that the relationship for a larger population as well. Chi-square is based on the difference between the expected and observed frequencies in one or more categories in the two-way table. It returns probability for the computed chi-square distribution with the degree of freedom.
+Probability of 0: It indicates that both categorical variable are dependent
+
+Probability of 1: It shows that both variables are independent.
+
+Probability less than 0.05: It indicates that the relationship between the variables is significant at 95% confidence. The chi-square test statistic for a test of independence of two categorical variables is found by:
+
+Data Exploration, Chi Square, Business Analyticswhere O represents the observed frequency. E is the expected frequency under the null hypothesis and computed by:
+Data Exploration, Chi Square, Business Analytics
+From previous two-way table, the expected count for product category 1 to be of small size is  0.22. It is derived by taking the row total for Size (9) times the column total for Product category (2) then dividing by the sample size (81). This is procedure is conducted for each cell. Statistical Measures used to analyze the power of relationship are:
+
+Cramer’s V for Nominal Categorical Variable
+Mantel-Haenszed Chi-Square for ordinal categorical variable.
+Different data science language and tools have specific methods to perform chi-square test. In SAS, we can use Chisq as an option with Proc freq to perform this test.
+
+ 
+
+Categorical & Continuous: While exploring relation between categorical and continuous variables, we can draw box plots for each level of categorical variables. If levels are small in number, it will not show the statistical significance. To look at the statistical significance we can perform Z-test, T-test or ANOVA.
+
+Z-Test/ T-Test:- Either test assess whether mean of two groups are statistically different from each other or not.ztestformulaIf the probability of Z is small then the difference of two averages is more significant. The T-test is very similar to Z-test but it is used when number of observation for both categories is less than 30.
+Data Exploration, Business Analytics
+ANOVA:- It assesses whether the average of more than two groups is statistically different.
+Example: Suppose, we want to test the effect of five different exercises. For this, we recruit 20 men and assign one type of exercise to 4 men (5 groups). Their weights are recorded after a few weeks. We need to find out whether the effect of these exercises on them is significantly different or not. This can be done by comparing the weights of the 5 groups of 4 men each.
+
+Till here, we have understood the first three stages of Data Exploration, Variable Identification, Uni-Variate and Bi-Variate analysis. We also looked at various statistical and visual methods to identify the relationship between variables. 
+
+
+Now, we will look at the methods of Missing values Treatment. More importantly, we will also look at why missing values occur in our data and why treating them is necessary.
+
+ 
+
+2. Missing Value Treatment
+ 
+
+Why missing values treatment is required?
+Missing data in the training data set can reduce the power / fit of a model or can lead to a biased model because we have not analysed the behavior and relationship with other variables correctly. It can lead to wrong prediction or classification.
+
+Data Exploration, Missing Values
+
+Notice the missing values in the image shown above: In the left scenario, we have not treated missing values. The inference from this data set is that the chances of playing cricket by males is higher than females. On the other hand, if you look at the second table, which shows data after treatment of missing values (based on gender), we can see that females have higher chances of playing cricket compared to males.
+
+ 
+
+Why my data has missing values?
+We looked at the importance of treatment of missing values in a dataset. Now, let’s identify the reasons for occurrence of these missing values. They may occur at two stages:
+
+Data Extraction: It is possible that there are problems with extraction process. In such cases, we should double-check for correct data with data guardians. Some hashing procedures can also be used to make sure data extraction is correct. Errors at data extraction stage are typically easy to find and can be corrected easily as well.
+Data collection: These errors occur at time of data collection and are harder to correct. They can be categorized in four types:
+Missing completely at random: This is a case when the probability of missing variable is same for all observations. For example: respondents of data collection process decide that they will declare their earning after tossing a fair coin. If an head occurs, respondent declares his / her earnings & vice versa. Here each observation has equal chance of missing value.
+Missing at random: This is a case when variable is missing at random and missing ratio varies for different values / level of other input variables. For example: We are collecting data for age and female has higher missing value compare to male.
+Missing that depends on unobserved predictors: This is a case when the missing values are not random and are related to the unobserved input variable. For example: In a medical study, if a particular diagnostic causes discomfort, then there is higher chance of drop out from the study. This missing value is not at random unless we have included “discomfort” as an input variable for all patients.
+Missing that depends on the missing value itself: This is a case when the probability of missing value is directly correlated with missing value itself. For example: People with higher or lower income are likely to provide non-response to their earning.
+ 
+
+Which are the methods to treat missing values ?
+Deletion:  It is of two types: List Wise Deletion and Pair Wise Deletion.
+In list wise deletion, we delete observations where any of the variable is missing. Simplicity is one of the major advantage of this method, but this method reduces the power of model because it reduces the sample size.
+In pair wise deletion, we perform analysis with all cases in which the variables of interest are present. Advantage of this method is, it keeps as many cases available for analysis. One of the disadvantage of this method, it uses different sample size for different variables.
+
+Data Exploration, Missing Values, Deletion Methods
+Deletion methods are used when the nature of missing data is “Missing completely at random” else non random missing values can bias the model output.
+Mean/ Mode/ Median Imputation: Imputation is a method to fill in the missing values with estimated ones. The objective is to employ known relationships that can be identified in the valid values of the data set to assist in estimating the missing values. Mean / Mode / Median imputation is one of the most frequently used methods. It consists of replacing the missing data for a given attribute by the mean or median (quantitative attribute) or mode (qualitative attribute) of all known values of that variable. It can be of two types:-
+Generalized Imputation: In this case, we calculate the mean or median for all non missing values of that variable then replace missing value with mean or median. Like in above table, variable “Manpower” is missing so we take average of all non missing values of “Manpower”  (28.33) and then replace missing value with it.
+Similar case Imputation: In this case, we calculate average for gender “Male” (29.75) and “Female” (25) individually of non missing values then replace the missing value based on gender. For “Male“, we will replace missing values of manpower with 29.75 and for “Female” with 25.
+Prediction Model:  Prediction model is one of the sophisticated method for handling missing data. Here, we create a predictive model to estimate values that will substitute the missing data.  In this case, we divide our data set into two sets: One set with no missing values for the variable and another one with missing values. First data set become training data set of the model while second data set with missing values is test data set and variable with missing values is treated as target variable. Next, we create a model to predict target variable based on other attributes of the training data set and populate missing values of test data set.We can use regression, ANOVA, Logistic regression and various modeling technique to perform this. There are 2 drawbacks for this approach:
+The model estimated values are usually more well-behaved than the true values
+If there are no relationships with attributes in the data set and the attribute with missing values, then the model will not be precise for estimating missing values.
+KNN Imputation: In this method of imputation, the missing values of an attribute are imputed using the given number of attributes that are most similar to the attribute whose values are missing. The similarity of two attributes is determined using a distance function. It is also known to have certain advantage & disadvantages.
+Advantages:
+k-nearest neighbour can predict both qualitative & quantitative attributes
+Creation of predictive model for each attribute with missing data is not required
+Attributes with multiple missing values can be easily treated
+Correlation structure of the data is taken into consideration
+Disadvantage:
+KNN algorithm is very time-consuming in analyzing large database. It searches through all the dataset looking for the most similar instances.
+Choice of k-value is very critical. Higher value of k would include attributes which are significantly different from what we need whereas lower value of k implies missing out of significant attributes.
+
+After dealing with missing values, the next task is to deal with outliers. Often, we tend to neglect outliers while building models. This is a discouraging practice. Outliers tend to make your data skewed and reduces accuracy. Let’s learn more about outlier treatment.
+
+ 
+
+3. Techniques of Outlier Detection and Treatment
+ 
+
+What is an Outlier?
+Outlier is a commonly used terminology by analysts and data scientists as it needs close attention else it can result in wildly wrong estimations. Simply speaking, Outlier is an observation that appears far away and diverges from an overall pattern in a sample.
+
+Let’s take an example, we do customer profiling and find out that the average annual income of customers is $0.8 million. But, there are two customers having annual income of $4 and $4.2 million. These two customers annual income is much higher than rest of the population. These two observations will be seen as Outliers.
+
+Outlier
+
+ 
+
+What are the types of Outliers?
+Outlier can be of two types: Univariate and Multivariate. Above, we have discussed the example of univariate outlier. These outliers can be found when we look at distribution of a single variable. Multi-variate outliers are outliers in an n-dimensional space. In order to find them, you have to look at distributions in multi-dimensions.
+
+Let us understand this with an example. Let us say we are understanding the relationship between height and weight. Below, we have univariate and bivariate distribution for Height, Weight. Take a look at the box plot. We do not have any outlier (above and below 1.5*IQR, most common method). Now look at the scatter plot. Here, we have two values below and one above the average in a specific segment of weight and height.
+
+Outlier, Multivariate Outlier
+
+What causes Outliers?
+Whenever we come across outliers, the ideal way to tackle them is to find out the reason of having these outliers. The method to deal with them would then depend on the reason of their occurrence. Causes of outliers can be classified in two broad categories:
+
+Artificial (Error) / Non-natural
+Natural.
+Let’s understand various types of outliers in more detail:
+
+Data Entry Errors:- Human errors such as errors caused during data collection, recording, or entry can cause outliers in data. For example: Annual income of a customer is $100,000. Accidentally, the data entry operator puts an additional zero in the figure. Now the income becomes $1,000,000 which is 10 times higher. Evidently, this will be the outlier value when compared with rest of the population.
+Measurement Error: It is the most common source of outliers. This is caused when the measurement instrument used turns out to be faulty. For example: There are 10 weighing machines. 9 of them are correct, 1 is faulty. Weight measured by people on the faulty machine will be higher / lower than the rest of people in the group. The weights measured on faulty machine can lead to outliers.
+Experimental Error: Another cause of outliers is experimental error. For example: In a 100m sprint of 7 runners, one runner missed out on concentrating on the ‘Go’ call which caused him to start late. Hence, this caused the runner’s run time to be more than other runners. His total run time can be an outlier.
+Intentional Outlier: This is commonly found in self-reported measures that involves sensitive data. For example: Teens would typically under report the amount of alcohol that they consume. Only a fraction of them would report actual value. Here actual values might look like outliers because rest of the teens are under reporting the consumption.
+Data Processing Error: Whenever we perform data mining, we extract data from multiple sources. It is possible that some manipulation or extraction errors may lead to outliers in the dataset.
+Sampling error: For instance, we have to measure the height of athletes. By mistake, we include a few basketball players in the sample. This inclusion is likely to cause outliers in the dataset.
+Natural Outlier: When an outlier is not artificial (due to error), it is a natural outlier. For instance: In my last assignment with one of the renowned insurance company, I noticed that the performance of top 50 financial advisors was far higher than rest of the population. Surprisingly, it was not due to any error. Hence, whenever we perform any data mining activity with advisors, we used to treat this segment separately.
+ 
+
+What is the impact of Outliers on a dataset?
+Outliers can drastically change the results of the data analysis and statistical modeling. There are numerous unfavourable impacts of outliers in the data set:
+
+It increases the error variance and reduces the power of statistical tests
+If the outliers are non-randomly distributed, they can decrease normality
+They can bias or influence estimates that may be of substantive interest
+They can also impact the basic assumption of Regression, ANOVA and other statistical model assumptions.
+To understand the impact deeply, let’s take an example to check what happens to a data set with and without outliers in the data set.
+
+Example:
+
+Outlier, Mean, Median, Mode
+
+As you can see, data set with outliers has significantly different mean and standard deviation. In the first scenario, we will say that average is 5.45. But with the outlier, average soars to 30. This would change the estimate completely.
+
+How to detect Outliers?
+Most commonly used method to detect outliers is visualization. We use various visualization methods, like Box-plot, Histogram, Scatter Plot (above, we have used box plot and scatter plot for visualization). Some analysts also various thumb rules to detect outliers. Some of them are:
+
+Any value, which is beyond the range of -1.5 x IQR to 1.5 x IQR
+Use capping methods. Any value which out of range of 5th and 95th percentile can be considered as outlier
+Data points, three or more standard deviation away from mean are considered outlier
+Outlier detection is merely a special case of the examination of data for influential data points and it also depends on the business understanding
+Bivariate and multivariate outliers are typically measured using either an index of influence or leverage, or distance. Popular indices such as Mahalanobis’ distance and Cook’s D are frequently used to detect outliers.
+In SAS, we can use PROC Univariate, PROC SGPLOT. To identify outliers and influential observation, we also look at statistical measure like STUDENT, COOKD, RSTUDENT and others.
+How to remove Outliers?
+Most of the ways to deal with outliers are similar to the methods of missing values like deleting observations, transforming them, binning them, treat them as a separate group, imputing values and other statistical methods. Here, we will discuss the common techniques used to deal with outliers:
+
+Deleting observations: We delete outlier values if it is due to data entry error, data processing error or outlier observations are very small in numbers. We can also use trimming at both ends to remove outliers.
+
+Transforming and binning values: Transforming variables can also eliminate outliers. Natural log of a value reduces the variation caused by extreme values. Binning is also a form of variable transformation. Decision Tree algorithm allows to deal with outliers well due to binning of variable. We can also use the process of assigning weights to different observations.
+
+Variable Transformation, LOG
+
+Imputing: Like imputation of missing values, we can also impute outliers. We can use mean, median, mode imputation methods. Before imputing values, we should analyse if it is natural outlier or artificial. If it is artificial, we can go with imputing values. We can also use statistical model to predict values of outlier observation and after that we can impute it with predicted values.
+
+Treat separately: If there are significant number of outliers, we should treat them separately in the statistical model. One of the approach is to treat both groups as two different groups and build individual model for both groups and then combine the output.
+
+
+Till here, we have learnt about steps of data exploration, missing value treatment and techniques of outlier detection and treatment. These 3 stages will make your raw data better in terms of information availability and accuracy. Let’s now proceed to the final stage of data exploration. It is Feature Engineering.
+
+ 
+
+4. The Art of Feature Engineering
+ 
+
+What is Feature Engineering?
+Feature engineering is the science (and art) of extracting more information from existing data. You are not adding any new data here, but you are actually making the data you already have more useful.
+
+For example, let’s say you are trying to predict foot fall in a shopping mall based on dates. If you try and use the dates directly, you may not be able to extract meaningful insights from the data. This is because the foot fall is less affected by the day of the month than it is by the day of the week. Now this information about day of week is implicit in your data. You need to bring it out to make your model better.
+
+This exercising of bringing out information from data in known as feature engineering.
+
+ 
+
+What is the process of Feature Engineering ?
+You perform feature engineering once you have completed the first 5 steps in data exploration – Variable Identification, Univariate, Bivariate Analysis, Missing Values Imputation and Outliers Treatment. Feature engineering itself can be divided in 2 steps:
+
+Variable transformation.
+Variable / Feature creation.
+These two techniques are vital in data exploration and have a remarkable impact on the power of prediction. Let’s understand each of this step in more details.
+
+ 
+
+What is Variable Transformation?
+In data modelling, transformation refers to the replacement of a variable by a function. For instance, replacing a variable x by the square / cube root or logarithm x is a transformation. In other words, transformation is a process that changes the distribution or relationship of a variable with others.
+
+Let’s look at the situations when  variable transformation is useful.
+
+ 
+
+When should we use Variable Transformation?
+Below are the situations where variable transformation is a requisite:
+
+When we want to change the scale of a variable or standardize the values of a variable for better understanding. While this transformation is a must if you have data in different scales, this transformation does not change the shape of the variable distribution
+When we can transform complex non-linear relationships into linear relationships. Existence of a linear relationship between variables is easier to comprehend compared to a non-linear or curved relation. Transformation helps us to convert a non-linear relation into linear relation. Scatter plot can be used to find the relationship between two continuous variables. These transformations also improve the prediction. Log transformation is one of the commonly used transformation technique used in these situations.
+Correlation, Analytics, TransformationSymmetric distribution is preferred over skewed distribution as it is easier to interpret and generate inferences. Some modeling techniques requires normal distribution of variables. So, whenever we have a skewed distribution, we can use transformations which reduce skewness. For right skewed distribution, we take square / cube root or logarithm of variable and for left skewed, we take square / cube or exponential of variables.Log Transformation, Analytics, Transformation
+Variable Transformation is also done from an implementation point of view (Human involvement). Let’s understand it more clearly. In one of my project on employee performance, I found that age has direct correlation with performance of the employee i.e. higher the age, better the performance. From an implementation stand point, launching age based progamme might present implementation challenge. However, categorizing the sales agents in three age group buckets of <30 years, 30-45 years and >45  and then formulating three different strategies for each group is a judicious approach. This categorization technique is known as Binning of Variables.
+ 
+
+What are the common methods of Variable Transformation?
+There are various methods used to transform variables. As discussed, some of them include square root, cube root, logarithmic, binning, reciprocal and many others. Let’s look at these methods in detail by highlighting the pros and cons of these transformation methods.
+
+Logarithm: Log of a variable is a common transformation method used to change the shape of distribution of the variable on a distribution plot. It is generally used for reducing right skewness of variables. Though, It can’t be applied to zero or negative values as well.
+Square / Cube root: The square and cube root of a variable has a sound effect on variable distribution. However, it is not as significant as logarithmic transformation. Cube root has its own advantage. It can be applied to negative values including zero. Square root can be applied to positive values including zero.
+Binning: It is used to categorize variables. It is performed on original values, percentile or frequency. Decision of categorization technique is based on business understanding. For example, we can categorize income in three categories, namely: High, Average and Low. We can also perform co-variate binning which depends on the value of more than one variables.
+ 
+
+What is Feature / Variable Creation & its Benefits?
+Feature / Variable creation is a process to generate a new variables / features based on existing variable(s). For example, say, we have date(dd-mm-yy) as an input variable in a data set. We can generate new variables like day, month, year, week, weekday that may have better relationship with target variable. This step is used to highlight the hidden relationship in a variable:
+
+Derived Variables, New Variables
+
+There are various techniques to create new features. Let’s look at the some of the commonly used methods:
+
+Creating derived variables: This refers to creating new variables from existing variable(s) using set of functions or different methods. Let’s look at it through “Titanic – Kaggle competition”. In this data set, variable age has missing values. To predict missing values, we used the salutation (Master, Mr, Miss, Mrs) of name as a new variable. How do we decide which variable to create? Honestly, this depends on business understanding of the analyst, his curiosity and the set of hypothesis he might have about the problem. Methods such as taking log of variables, binning variables and other methods of variable transformation can also be used to create new variables.
+Creating dummy variables: One of the most common application of dummy variable is to convert categorical variable into numerical variables. Dummy variables are also called Indicator Variables. It is useful to take categorical variable as a predictor in statistical models.  Categorical variable can take values 0 and 1. Let’s take a variable ‘gender’. We can produce two variables, namely, “Var_Male” with values 1 (Male) and 0 (No male) and “Var_Female” with values 1 (Female) and 0 (No Female). We can also create dummy variables for more than two classes of a categorical variables with n or n-1 dummy variables.
+Dummy Variable, Data Exploration
+
+For further read, here is a list of transformation / creation ideas which can be applied to your data.
+
+
+
+You will invariable find features which you hypothesized, but data doesn’t carry and vice versa. You should look for open source data to fill the gaps if possible. Let’s start by loading the required libraries and data. You can download the data from the competition page.
+
+import pandas as pd
+import numpy as np
+
+#Read files:
+train = pd.read_csv("train.csv")
+test = pd.read_csv("test.csv")
+Its generally a good idea to combine both train and test data sets into one, perform feature engineering and then divide them later again. This saves the trouble of performing the same steps twice on test and train. Lets combine them into a dataframe ‘data’ with a ‘source’ column specifying where each observation belongs.
+
+train['source']='train'
+test['source']='test'
+data = pd.concat([train, test],ignore_index=True)
+print train.shape, test.shape, data.shape
+1. shape
+
+Thus we can see that data has same #columns but rows equivalent to both test and train. One of the key challenges in any data set is missing values. Lets start by checking which columns contain missing values.
+
+data.apply(lambda x: sum(x.isnull()))
+2. missing
+
+Note that the Item_Outlet_Sales is the target variable and missing values are ones in the test set. So we need not worry about it. But we’ll impute the missing values in Item_Weight and Outlet_Size in the data cleaning section.
+
+Lets look at some basic statistics for numerical variables.
+
+data.describe()
+3. describe
+
+Some observations:
+
+Item_Visibility has a min value of zero. This makes no practical sense because when a product is being sold in a store, the visibility cannot be 0.
+Outlet_Establishment_Years vary from 1985 to 2009. The values might not be apt in this form. Rather, if we can convert them to how old the particular store is, it should have a better impact on sales.
+The lower ‘count’ of Item_Weight and Item_Outlet_Sales confirms the findings from the missing value check.
+Moving to nominal (categorical) variable, lets have a look at the number of unique values in each of them.
+
+data.apply(lambda x: len(x.unique()))
+4. unique
+
+This tells us that there are 1559 products and 10 outlets/stores (which was also mentioned in problem statement). Another thing that should catch attention is that Item_Type has 16 unique values. Let’s explore further using the frequency of different categories in each nominal variable. I’ll exclude the ID and source variables for obvious reasons.
+
+#Filter categorical variables
+categorical_columns = [x for x in data.dtypes.index if data.dtypes[x]=='object']
+#Exclude ID cols and source:
+categorical_columns = [x for x in categorical_columns if x not in ['Item_Identifier','Outlet_Identifier','source']]
+#Print frequency of categories
+for col in categorical_columns:
+    print '\nFrequency of Categories for varible %s'%col
+    print data[col].value_counts()
+5. categories
+
+The output gives us following observations:
+
+Item_Fat_Content: Some of ‘Low Fat’ values mis-coded as ‘low fat’ and ‘LF’. Also, some of ‘Regular’ are mentioned as ‘regular’.
+Item_Type: Not all categories have substantial numbers. It looks like combining them can give better results.
+Outlet_Type: Supermarket Type2 and Type3 can be combined. But we should check if that’s a good idea before doing it.
+ 
+
+3. Data Cleaning
+This step typically involves imputing missing values and treating outliers. Though outlier removal is very important in regression techniques, advanced tree based algorithms are impervious to outliers. So I’ll leave it to you to try it out. We’ll focus on the imputation step here, which is a very important step.
+
+Note: We’ll be using some Pandas library extensively here. If you’re new to Pandas, please go through this article.
+
+Imputing Missing Values
+We found two variables with missing values – Item_Weight and Outlet_Size. Lets impute the former by the average weight of the particular item. This can be done as:
+
+#Determine the average weight per item:
+item_avg_weight = data.pivot_table(values='Item_Weight', index='Item_Identifier')
+
+#Get a boolean variable specifying missing Item_Weight values
+miss_bool = data['Item_Weight'].isnull() 
+
+#Impute data and check #missing values before and after imputation to confirm
+print 'Orignal #missing: %d'% sum(miss_bool)
+data.loc[miss_bool,'Item_Weight'] = data.loc[miss_bool,'Item_Identifier'].apply(lambda x: item_avg_weight[x])
+print 'Final #missing: %d'% sum(data['Item_Weight'].isnull())
+7. imputation1
+
+This confirms that the column has no missing values now. Lets impute Outlet_Size with the mode of the Outlet_Size for the particular type of outlet.
+
+#Import mode function:
+from scipy.stats import mode
+
+#Determing the mode for each
+outlet_size_mode = data.pivot_table(values='Outlet_Size', columns='Outlet_Type',aggfunc=(lambda x:mode(x).mode[0]) )
+print 'Mode for each Outlet_Type:'
+print outlet_size_mode
+
+#Get a boolean variable specifying missing Item_Weight values
+miss_bool = data['Outlet_Size'].isnull() 
+
+#Impute data and check #missing values before and after imputation to confirm
+print '\nOrignal #missing: %d'% sum(miss_bool)
+data.loc[miss_bool,'Outlet_Size'] = data.loc[miss_bool,'Outlet_Type'].apply(lambda x: outlet_size_mode[x])
+print sum(data['Outlet_Size'].isnull())
+8. imputation2
+
+This confirms that there are no missing values in the data. Lets move on to feature engineering now.
+
+4. Feature Engineering
+We explored some nuances in the data in the data exploration section. Lets move on to resolving them and making our data ready for analysis. We will also create some new variables using the existing ones in this section.
+
+Step 1: Consider combining Outlet_Type
+During exploration, we decided to consider combining the Supermarket Type2 and Type3 variables. But is that a good idea? A quick way to check that could be to analyze the mean sales by type of store. If they have similar sales, then keeping them separate won’t help much.
+
+data.pivot_table(values='Item_Outlet_Sales',index='Outlet_Type')
+9. outlet type
+
+This shows significant difference between them and we’ll leave them as it is. Note that this is just one way of doing this, you can perform some other analysis in different situations and also do the same for other features.
+
+Step 2: Modify Item_Visibility
+We noticed that the minimum value here is 0, which makes no practical sense. Lets consider it like missing information and impute it with mean visibility of that product.
+
+#Determine average visibility of a product
+visibility_avg = data.pivot_table(values='Item_Visibility', index='Item_Identifier')
+
+#Impute 0 values with mean visibility of that product:
+miss_bool = (data['Item_Visibility'] == 0)
+
+print 'Number of 0 values initially: %d'%sum(miss_bool)
+data.loc[miss_bool,'Item_Visibility'] = data.loc[miss_bool,'Item_Identifier'].apply(lambda x: visibility_avg[x])
+print 'Number of 0 values after modification: %d'%sum(data['Item_Visibility'] == 0)
+10. visib 1
+
+So we can see that there are no values which are zero.
+
+In step 1 we hypothesized that products with higher visibility are likely to sell more. But along with comparing products on absolute terms, we should look at the visibility of the product in that particular store as compared to the mean visibility of that product across all stores. This will give some idea about how much importance was given to that product in a store as compared to other stores. We can use the ‘visibility_avg’ variable made above to achieve this.
+
+#Determine another variable with means ratio
+data['Item_Visibility_MeanRatio'] = data.apply(lambda x: x['Item_Visibility']/visibility_avg[x['Item_Identifier']], axis=1)
+print data['Item_Visibility_MeanRatio'].describe()
+11. visb 2
+
+Thus the new variable has been successfully created. Again, this is just 1 example of how to create new features. I highly  encourage you to try more of these, as good features can drastically improve model performance and they invariably prove to be the difference between the best and the average model.
+
+Step 3: Create a broad category of Type of Item
+Earlier we saw that the Item_Type variable has 16 categories which might prove to be very useful in analysis. So its a good idea to combine them. One way could be to manually assign a new category to each. But there’s a catch here. If you look at the Item_Identifier, i.e. the unique ID of each item, it starts with either FD, DR or NC. If you see the categories, these look like being Food, Drinks and Non-Consumables. So I’ve used the Item_Identifier variable to create a new column:
+
+#Get the first two characters of ID:
+data['Item_Type_Combined'] = data['Item_Identifier'].apply(lambda x: x[0:2])
+#Rename them to more intuitive categories:
+data['Item_Type_Combined'] = data['Item_Type_Combined'].map({'FD':'Food',
+                                                             'NC':'Non-Consumable',
+                                                             'DR':'Drinks'})
+data['Item_Type_Combined'].value_counts()
+12. item_type
+
+Another idea could be to combine categories based on sales. The ones with high average sales could be combined together. I leave this for you to try.
+
+Step 4: Determine the years of operation of a store
+We wanted to make a new column depicting the years of operation of a store. This can be done as:
+
+#Years:
+data['Outlet_Years'] = 2013 - data['Outlet_Establishment_Year']
+data['Outlet_Years'].describe()
+13. years of oper
+
+This shows stores which are 4-28 years old. Notice I’ve used 2013. Why? Read the problem statement carefully and you’ll know.
+
+Step 5: Modify categories of Item_Fat_Content
+We found typos and difference in representation in categories of Item_Fat_Content variable. This can be corrected as:
+
+#Change categories of low fat:
+print 'Original Categories:'
+print data['Item_Fat_Content'].value_counts()
+
+print '\nModified Categories:'
+data['Item_Fat_Content'] = data['Item_Fat_Content'].replace({'LF':'Low Fat',
+                                                             'reg':'Regular',
+                                                             'low fat':'Low Fat'})
+print data['Item_Fat_Content'].value_counts()
+14. fat content1
+
+Now it makes more sense. But hang on, in step 4 we saw there were some non-consumables as well and a fat-content should not be specified for them. So we can also create a separate category for such kind of observations.
+
+#Mark non-consumables as separate category in low_fat:
+data.loc[data['Item_Type_Combined']=="Non-Consumable",'Item_Fat_Content'] = "Non-Edible"
+data['Item_Fat_Content'].value_counts()
+15. fat content 2
+Step 6: Numerical and One-Hot Coding of Categorical variables
+Since scikit-learn accepts only numerical variables, I converted all categories of nominal variables into numeric types. Also, I wanted Outlet_Identifier as a variable as well. So I created a new variable ‘Outlet’ same as Outlet_Identifier and coded that. Outlet_Identifier should remain as it is, because it will be required in the submission file.
+
+Lets start with coding all categorical variables as numeric using ‘LabelEncoder’ from sklearn’s preprocessing module.
+
+#Import library:
+from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
+#New variable for outlet
+data['Outlet'] = le.fit_transform(data['Outlet_Identifier'])
+var_mod = ['Item_Fat_Content','Outlet_Location_Type','Outlet_Size','Item_Type_Combined','Outlet_Type','Outlet']
+le = LabelEncoder()
+for i in var_mod:
+    data[i] = le.fit_transform(data[i])
+One-Hot-Coding refers to creating dummy variables, one for each category of a categorical variable. For example, the Item_Fat_Content has 3 categories – ‘Low Fat’, ‘Regular’ and ‘Non-Edible’. One hot coding will remove this variable and generate 3 new variables. Each will have binary numbers – 0 (if the category is not present) and 1(if category is present). This can be done using ‘get_dummies’ function of Pandas.
+
+#One Hot Coding:
+data = pd.get_dummies(data, columns=['Item_Fat_Content','Outlet_Location_Type','Outlet_Size','Outlet_Type',
+                              'Item_Type_Combined','Outlet'])
+Lets look at the datatypes of columns now:
+
+data.dtypes
+16. final dtypes
+
+Here we can see that all variables are now float and each category has a new variable. Lets look at the 3 columns formed from Item_Fat_Content.
+
+data[['Item_Fat_Content_0','Item_Fat_Content_1','Item_Fat_Content_2']].head(10)
+17. final fat content compare
+
+You can notice that each row will have only one of the columns as 1 corresponding to the category in the original variable.
+
+Step 7: Exporting Data
+Final step is to convert data back into train and test data sets. Its generally a good idea to export both of these as modified data sets so that they can be re-used for multiple sessions. This can be achieved using following code:
+
+#Drop the columns which have been converted to different types:
+data.drop(['Item_Type','Outlet_Establishment_Year'],axis=1,inplace=True)
+
+#Divide into test and train:
+train = data.loc[data['source']=="train"]
+test = data.loc[data['source']=="test"]
+
+#Drop unnecessary columns:
+test.drop(['Item_Outlet_Sales','source'],axis=1,inplace=True)
+train.drop(['source'],axis=1,inplace=True)
+
+#Export files as modified versions:
+train.to_csv("train_modified.csv",index=False)
+test.to_csv("test_modified.csv",index=False)
+With this we come to the end of this section. If you want all the codes for exploration and feature engineering in an iPython notebook format, you can download the same from my GitHub repository.
+
+ 
+
+4. Model Building
+Now that we have the data ready, its time to start making predictive models. I will take you through 6 models including linear regression, decision tree and random forest which can get you into Top 20 ranks in this competition (I mean ranks as of today because after reading this article, I’m sure many new leaders will emerge).
+
+Lets start by making a baseline model. Baseline model is the one which requires no predictive model and its like an informed guess. For instance, in this case lets predict the sales as the overall average sales. This can be done as:
+
+#Mean based:
+mean_sales = train['Item_Outlet_Sales'].mean()
+
+#Define a dataframe with IDs for submission:
+base1 = test[['Item_Identifier','Outlet_Identifier']]
+base1['Item_Outlet_Sales'] = mean_sales
+
+#Export submission file
+base1.to_csv("alg0.csv",index=False)
+Public Leaderboard Score: 1773
+
+Seems too naive for you? If you look at the public LB now, you’ll find 4 players below this number. So making baseline models helps in setting a benchmark. If your predictive algorithm is below this, there is something going seriously wrong and you should check your data.
+
+If you participated in AV datahacks or other short duration hackathons, you’ll notice first submissions coming in within 5-10 mins of data being available. These are nothing but baseline solutions and no rocket science.
+
+Taking overall mean is just the simplest way. You can also try:
+
+Average sales by product
+Average sales by product in the particular outlet type
+These should give better baseline solutions.
+
+Since I’ll be making many models, instead of repeating the codes again and again, I would like to define a generic function which takes the algorithm and data as input and makes the model, performs cross-validation and generates submission. If you don’t like functions, you can choose the longer way as well. But I have a tendency of using functions a lot (actually I over-use sometimes :D). So here is the function:
+
+#Define target and ID columns:
+target = 'Item_Outlet_Sales'
+IDcol = ['Item_Identifier','Outlet_Identifier']
+from sklearn import cross_validation, metrics
+def modelfit(alg, dtrain, dtest, predictors, target, IDcol, filename):
+    #Fit the algorithm on the data
+    alg.fit(dtrain[predictors], dtrain[target])
+        
+    #Predict training set:
+    dtrain_predictions = alg.predict(dtrain[predictors])
+
+    #Perform cross-validation:
+    cv_score = cross_validation.cross_val_score(alg, dtrain[predictors], dtrain[target], cv=20, scoring='mean_squared_error')
+    cv_score = np.sqrt(np.abs(cv_score))
+    
+    #Print model report:
+    print "\nModel Report"
+    print "RMSE : %.4g" % np.sqrt(metrics.mean_squared_error(dtrain[target].values, dtrain_predictions))
+    print "CV Score : Mean - %.4g | Std - %.4g | Min - %.4g | Max - %.4g" % (np.mean(cv_score),np.std(cv_score),np.min(cv_score),np.max(cv_score))
+    
+    #Predict on testing data:
+    dtest[target] = alg.predict(dtest[predictors])
+    
+    #Export submission file:
+    IDcol.append(target)
+    submission = pd.DataFrame({ x: dtest[x] for x in IDcol})
+    submission.to_csv(filename, index=False)
+I’ve put in self-explanatory comments. Please feel free to discuss in comments if you face difficulties in understanding the code. If you’re new to the concept of cross-validation, read more about it here.
+
+Linear Regression Model
+Lets make our first linear-regression model. Read more on Linear Regression here.
+
+from sklearn.linear_model import LinearRegression, Ridge, Lasso
+predictors = [x for x in train.columns if x not in [target]+IDcol]
+# print predictors
+alg1 = LinearRegression(normalize=True)
+modelfit(alg1, train, test, predictors, target, IDcol, 'alg1.csv')
+coef1 = pd.Series(alg1.coef_, predictors).sort_values()
+coef1.plot(kind='bar', title='Model Coefficients')
+ 
+
+1. lin reg
+
+Public LB Score: 1202
+
+We can see this is better than baseline model. But if you notice the coefficients, they are very large in magnitude which signifies overfitting. To cater to this, lets use a ridge regression model. You should read this article if you wish to learn more about Ridge & Lasso regression techniques.
+
+Ridge Regression Model:
+predictors = [x for x in train.columns if x not in [target]+IDcol]
+alg2 = Ridge(alpha=0.05,normalize=True)
+modelfit(alg2, train, test, predictors, target, IDcol, 'alg2.csv')
+coef2 = pd.Series(alg2.coef_, predictors).sort_values()
+coef2.plot(kind='bar', title='Model Coefficients')
+ 
+
+2. ridge reg
+
+Public LB Score: 1203
+
+Though the regression coefficient look better now, the score is about the same. You can tune the parameters of the model for slightly better results but I don’t think there will be a significant improvement. Even the cross-validation score is same so we can’t expect way better performance.
+
+Decision Tree Model
+Lets try out a decision tree model and see if we get something better.
+
+from sklearn.tree import DecisionTreeRegressor
+predictors = [x for x in train.columns if x not in [target]+IDcol]
+alg3 = DecisionTreeRegressor(max_depth=15, min_samples_leaf=100)
+modelfit(alg3, train, test, predictors, target, IDcol, 'alg3.csv')
+coef3 = pd.Series(alg3.feature_importances_, predictors).sort_values(ascending=False)
+coef3.plot(kind='bar', title='Feature Importances')
+ 
+
+3. dt 1
+
+Public LB Score: 1162
+
+Here you can see that the RMSE is 1058 and the mean CV error is 1091. This tells us that the model is slightly overfitting. Lets try making a decision tree with just top 4 variables, a max_depth of 8 and min_samples_leaf as 150.
+
+predictors = ['Item_MRP','Outlet_Type_0','Outlet_5','Outlet_Years']
+alg4 = DecisionTreeRegressor(max_depth=8, min_samples_leaf=150)
+modelfit(alg4, train, test, predictors, target, IDcol, 'alg4.csv')
+coef4 = pd.Series(alg4.feature_importances_, predictors).sort_values(ascending=False)
+coef4.plot(kind='bar', title='Feature Importances')
+4. dt2
+
+Public LB Score: 1157
+
+You can fine tune the model further using other parameters. I’ll leave this to you.
+
+Random Forest Model
+Lets try a random forest model as well and see if we get some improvements. Read more about random forest here.
+
+from sklearn.ensemble import RandomForestRegressor
+predictors = [x for x in train.columns if x not in [target]+IDcol]
+alg5 = RandomForestRegressor(n_estimators=200,max_depth=5, min_samples_leaf=100,n_jobs=4)
+modelfit(alg5, train, test, predictors, target, IDcol, 'alg5.csv')
+coef5 = pd.Series(alg5.feature_importances_, predictors).sort_values(ascending=False)
+coef5.plot(kind='bar', title='Feature Importances')
+ 
+
+5. rf1
+
+Public LB Score: 1154
+
+You might feel this is a very small improvement but as our model gets better, achieving even minute improvements becomes exponentially difficult. Lets try another random forest with max_depth of 6 and 400 trees. Increasing the number of trees makes the model robust but is computationally expensive.
+
+predictors = [x for x in train.columns if x not in [target]+IDcol]
+alg6 = RandomForestRegressor(n_estimators=400,max_depth=6, min_samples_leaf=100,n_jobs=4)
+modelfit(alg6, train, test, predictors, target, IDcol, 'alg6.csv')
+coef6 = pd.Series(alg6.feature_importances_, predictors).sort_values(ascending=False)
+coef6.plot(kind='bar', title='Feature Importances')
+ 
+
+6. rf2
+
+LB Score: 1152
+
+Again this is an incremental change but will help you get a jump of 5-10 ranks on leaderboard. You should try to tune the parameters further to get higher accuracy. But this is good enough to get you into the top 20 on the LB as of now. I tried a basic GBM with little tuning and got into the top 10. I leave it to you to refine with score with better algorithms like GBM and XGBoost and try ensemble techniques.
+
+With this we come to the end of this section. If you want all the codes for model building in an iPython notebook format, you can download the same from my GitHub repository.
+
+ 
+
+End Notes
+This article took us through the entire journey of solving a data science problem. We started with making some hypothesis about the data without looking at it. Then we moved on to data exploration where we found out some nuances in the data which required remediation. Next, we performed data cleaning and feature engineering, where we imputed missing values and solved other irregularities, made new features and also made the data model-friendly by one-hot-coding. Finally we made regression, decision tree and random forest model and got a glimpse of how to tune them for better results.
+
+I believe everyone reading this article should attain a good score in BigMart Sales now. For beginners, you should achieve at least a score of 1150 and for the ones already on the top, you can use some feature engineering tips from here to go further up. All the best to all!
+
+Did you find this article useful? Could you make some more interesting hypothesis? What other features did you create? Were you able to get a better score with GBM & XGBoost? Feel free to discuss your experiences in comments below or on the discussion portal and we’ll be more than happy to discuss.
+
